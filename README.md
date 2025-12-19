@@ -106,6 +106,7 @@ Postman
 Git & GitHub
 
 ## 📂 Backend Project Structure
+```
 src/main/java/com/defence/portal
 │
 ├── controller        # REST controllers
@@ -119,16 +120,19 @@ src/main/java/com/defence/portal
 ├── exception         # Custom & global exceptions
 ├── config            # Swagger, Mapper configs
 └── DefencePortalApplication.java
-
+```
 ## 🔗 REST API Modules
 ### 📢 Notification APIs
 Method	Endpoint	Description
+```
 POST	/api/notifications	Create notification
 PUT	/api/notifications/{id}	Update notification
 GET	/api/notifications	Get all notifications
 GET	/api/notifications/{id}	Get notification by ID
 DELETE	/api/notifications/{id}	Delete notification
+```
 ### 📝 Mock Test APIs
+```
 Method	Endpoint	Description
 POST	/api/mock-tests	Create mock test
 GET	/api/mock-tests	Get all mock tests
@@ -138,12 +142,13 @@ DELETE	/api/mock-tests/{id}	Delete mock test
 Method	Endpoint	Description
 GET	/api/notifications?type=RESULT_ANNOUNCED	Result notifications
 GET	/api/notifications?status=ACTIVE	Active exams
+```
 ## 📘 Swagger API Documentation
 
 Swagger UI is enabled for API testing and documentation.
-
+```
 http://localhost:8080/swagger-ui/index.html
-
+```
 ## 🗄️ Database Design Highlights
 
 MySQL relational database
@@ -158,7 +163,7 @@ Audit fields (createdAt, updatedAt)
 
 ## ⚙️ Setup Instructions
 1️⃣ Clone Repository
-git clone https://github.com/your-username/defence-aspirant-portal-backend.git
+git clone https://github.com/mahesh-ryadav/defence-aspirant-portal-backend.git
 
 2️⃣ Configure Database
 
