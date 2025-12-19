@@ -106,6 +106,7 @@ Postman
 Git & GitHub
 
 ## 📂 Backend Project Structure
+```
 src/main/java/com/defence/portal
 │
 ├── controller        # REST controllers
@@ -119,7 +120,7 @@ src/main/java/com/defence/portal
 ├── exception         # Custom & global exceptions
 ├── config            # Swagger, Mapper configs
 └── DefencePortalApplication.java
-
+```
 ## 🔗 REST API Modules
 ### 📢 Notification APIs
 Method	Endpoint	Description
