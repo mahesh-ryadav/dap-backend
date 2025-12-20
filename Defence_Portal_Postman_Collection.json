@@ -1,0 +1,363 @@
+{
+  "info": {
+    "name": "Defence Portal Exam APIs",
+    "description": "Complete API collection for testing the Defence Portal exam system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "mock_test_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "section_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "question_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attempt_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Mock Test APIs",
+      "item": [
+        {
+          "name": "Create Mock Test",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"BSF Constable Mock Test 2024\",\n  \"examType\": \"BSF\",\n  \"description\": \"Complete mock test for BSF Constable exam\",\n  \"totalMarks\": 100,\n  \"durationMinutes\": 60,\n  \"negativeMarking\": true,\n  \"status\": \"DRAFT\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.environment.set(\"mock_test_id\", response.id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get All Mock Tests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests"]
+            }
+          }
+        },
+        {
+          "name": "Get Published Mock Tests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests/published",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests", "published"]
+            }
+          }
+        },
+        {
+          "name": "Get Mock Tests by Exam Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests/exam-type/BSF",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests", "exam-type", "BSF"]
+            }
+          }
+        },
+        {
+          "name": "Get Mock Test by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests/{{mock_test_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests", "{{mock_test_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Mock Test",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated BSF Constable Mock Test 2024\",\n  \"examType\": \"BSF\",\n  \"description\": \"Updated mock test description\",\n  \"totalMarks\": 100,\n  \"durationMinutes\": 60,\n  \"negativeMarking\": true,\n  \"status\": \"DRAFT\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests/{{mock_test_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests", "{{mock_test_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Publish Mock Test",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests/{{mock_test_id}}/publish",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests", "{{mock_test_id}}", "publish"]
+            }
+          }
+        },
+        {
+          "name": "Delete Mock Test",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/mock-tests/{{mock_test_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "mock-tests", "{{mock_test_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Question APIs",
+      "item": [
+        {
+          "name": "Create Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionText\": \"What is the capital of India?\",\n  \"questionType\": \"MCQ\",\n  \"marks\": 4,\n  \"negativeMarks\": 1,\n  \"difficultyLevel\": \"EASY\",\n  \"sectionId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/exam/questions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "questions"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.environment.set(\"question_id\", response.id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get All Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/questions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "questions"]
+            }
+          }
+        },
+        {
+          "name": "Get Questions by Section",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/questions/section/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "questions", "section", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Question by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/questions/{{question_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "questions", "{{question_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionText\": \"What is the capital of France?\",\n  \"questionType\": \"MCQ\",\n  \"marks\": 4,\n  \"negativeMarks\": 1,\n  \"difficultyLevel\": \"EASY\",\n  \"sectionId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/exam/questions/{{question_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "questions", "{{question_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Question",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/questions/{{question_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "questions", "{{question_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Attempt APIs",
+      "item": [
+        {
+          "name": "Start Test Attempt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 123,\n  \"mockTestId\": \"{{mock_test_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/exam/attempts/start",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "attempts", "start"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.environment.set(\"attempt_id\", response.id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit Test Attempt",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/attempts/{{attempt_id}}/submit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "attempts", "{{attempt_id}}", "submit"]
+            }
+          }
+        },
+        {
+          "name": "Get All Test Attempts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/attempts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "attempts"]
+            }
+          }
+        },
+        {
+          "name": "Get Attempts by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/attempts/user/123",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "attempts", "user", "123"]
+            }
+          }
+        },
+        {
+          "name": "Get Attempts by Mock Test",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/exam/attempts/mock-test/{{mock_test_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "exam", "attempts", "mock-test", "{{mock_test_id}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
