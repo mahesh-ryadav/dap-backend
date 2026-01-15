@@ -1,8 +1,7 @@
-HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/resources/archetype-resources/google_checks.xml
+!**/src/main/resources/archetype-resources/checkstyle.xml
 
 ### STS ###
 .apt_generated
@@ -26,11 +25,14 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
 
 ### Environment Variables ###
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
