@@ -7,8 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
-
-    // List<Notification> findByStatus(String status);
-
-    // List<Notification> findByExamName(String examName);
 }
