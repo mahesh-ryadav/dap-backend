@@ -4,10 +4,10 @@ import com.defence.portal.notification.dto.NotificationDto;
 
 import com.defence.portal.notification.service.NotificationService;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/notifications")
