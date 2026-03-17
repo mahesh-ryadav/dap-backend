@@ -12,6 +12,7 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("https://defence-aspirant-portal.vercel.app/");
         configuration.addAllowedOrigin("https://defence-aspirant-portal-6xmnnu5qp.vercel.app");
         configuration.addAllowedOrigin("http://localhost:5173");
         configuration.setAllowedMethods(java.util.Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
