@@ -312,8 +312,8 @@ npm run dev
 ## 👨‍💻 Author
 
 **Mahesh Ryadav**
-- GitHub: [github.com/yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- GitHub: [github.com/yourusername](https://github.com/mahesh-ryadav)
+- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/mahesh-ryadav)
 
 ## 📄 License
 
