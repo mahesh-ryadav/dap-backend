@@ -317,4 +317,4 @@ npm run dev
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is developed and maintained by Mahesh Yadav as part of a full-stack portfolio demonstrating React, Spring Boot, and PostgreSQL.
