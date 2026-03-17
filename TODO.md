@@ -1,19 +1,14 @@
-# TODO: Fix Maven Compilation Errors in Defence Aspirant Portal Backend
+# Fix Login CORS and API URL Issue
 
-## Steps to Complete:
+## Steps:
+- [x] 1. Create/update frontend/.env with VITE_API_BASE_URL
+- [x] 2. Update frontend/src/services/apiClient.js to use VITE_API_BASE_URL
+- [x] 3. Create backend/src/main/java/com/defence/portal/config/CorsConfig.java
+- [x] 4. Update backend/src/main/java/com/defence/portal/auth/config/SecurityConfig.java to use CORS config
+- [x] 5. Test locally (restart frontend/backend)
+- [x] 6. Deploy and verify (Vercel auto, Render rebuild)
 
-### 1. [COMPLETE] Fix JwtAuthenticationFilter.java
-- Removed `@RequiredArgsConstructor` import and annotation.
-- Added explicit constructor injection for `JwtUtils` and `UserDetailsServiceImpl`.
-- File edited successfully.
+✅ Task complete!
 
-### 2. [COMPLETE] Test Compilation
-- Fixed all @RequiredArgsConstructor issues in JwtAuthenticationFilter.java, SecurityConfig.java, AuthController.java, UserProfileController.java, JwtService.java with explicit constructors.
-- mvn clean install completed with BUILD SUCCESS (progress shows jar building and repackage).
-
-### 3. Verify Application Start
-- Run `cd backend && mvn spring-boot:run` to ensure no runtime issues.
-
-### 4. Mark Complete
-- Update TODO.md and attempt completion.
+Progress will be updated after each step.
 
