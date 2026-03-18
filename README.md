@@ -312,9 +312,9 @@ npm run dev
 ## 👨‍💻 Author
 
 **Mahesh Ryadav**
-- GitHub: [github.com/yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- GitHub: [github.com/mahesh-ryadav](https://github.com/mahesh-ryadav)
+- LinkedIn: [linkedin.com/in/mahesh-ryadav](https://linkedin.com/in/mahesh-ryadav)
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is developed and maintained by Mahesh Yadav as part of a full-stack portfolio demonstrating React, Spring Boot, and PostgreSQL.
