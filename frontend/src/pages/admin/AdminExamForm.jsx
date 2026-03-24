@@ -11,13 +11,16 @@ const AdminExamForm = () => {
   const navigate = useNavigate();
   const isEditMode = !!id;
 
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     title: "",
     description: "",
     durationMinutes: 60,
     totalMarks: 100,
+    passingMarks: 40,
+    negativeMarkingEnabled: false,
+    negativeMarksPerQuestion: 0.25,
+    active: true,
     category: "",
-    status: "ACTIVE",
   });
 
   const [loading, setLoading] = useState(false);
@@ -41,15 +44,13 @@ const AdminExamForm = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        name === "duration" || name === "totalMarks" ? parseInt(value) : value,
-    }));
+const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : (["durationMinutes", "totalMarks", "passingMarks", "negativeMarksPerQuestion"].includes(name) ? parseFloat(value) || 0 : value);
+    setFormData((prev) => ({ ...prev, [name]: val }));
   };
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,20 +139,19 @@ const AdminExamForm = () => {
 
               {/* Duration + Marks */}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                     <Clock size={16} className="text-blue-600" />
                     Duration (Minutes)
                   </label>
-
                   <input
                     type="number"
-                    name="duration"
+                    name="durationMinutes"
                     required
                     min="1"
                     className="w-full border border-gray-300 rounded-lg py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    value={formData.duration}
+                    value={formData.durationMinutes}
                     onChange={handleChange}
                   />
                 </div>
@@ -162,16 +162,76 @@ const AdminExamForm = () => {
                     Total Marks
                   </label>
 
+              <input
+                  type="number"
+                  name="totalMarks"
+                  required
+                  min="1"
+                  className="w-full border border-gray-300 rounded-lg py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  value={formData.totalMarks}
+                  onChange={handleChange}
+                />
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <Award size={16} className="text-green-600" />
+                    Passing Marks
+                  </label>
                   <input
                     type="number"
-                    name="totalMarks"
-                    required
-                    min="1"
+                    name="passingMarks"
                     className="w-full border border-gray-300 rounded-lg py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    value={formData.totalMarks}
+                    value={formData.passingMarks}
                     onChange={handleChange}
                   />
                 </div>
+                </div>
+              </div>
+
+              {/* Negative Marking */}
+              <fieldset className="space-y-3 p-4 border border-gray-200 rounded-lg bg-gray-50">
+                <legend className="text-sm font-medium text-gray-700 px-1">Negative Marking</legend>
+                <label className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    name="negativeMarkingEnabled"
+                    className="w-5 h-5 text-red-600 rounded"
+                    checked={formData.negativeMarkingEnabled}
+                    onChange={handleChange}
+                  />
+                  <span className="text-sm font-medium text-gray-900">Enable Negative Marking</span>
+                </label>
+                {formData.negativeMarkingEnabled && (
+                  <div className="ml-8">
+                    <label className="text-xs text-gray-600 block mb-1">Marks per wrong answer</label>
+                    <input
+                      type="number"
+                      name="negativeMarksPerQuestion"
+                      step="0.25"
+                      min="0"
+                      max="1"
+                      className="w-full max-w-xs border border-gray-300 rounded-lg py-2 px-3 text-gray-900 focus:ring-2 focus:ring-red-500"
+                      value={formData.negativeMarksPerQuestion}
+                      onChange={handleChange}
+                    />
+                  </div>
+                )}
+              </fieldset>
+
+              {/* Active Status */}
+              <div className="space-y-2">
+                <label className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg bg-green-50 hover:bg-green-100 transition">
+                  <input
+                    type="checkbox"
+                    name="active"
+                    className="w-5 h-5 text-green-600 rounded"
+                    checked={formData.active}
+                    onChange={handleChange}
+                  />
+                  <span className="text-sm font-medium text-gray-900">
+                    Exam is Active / Live for students
+                  </span>
+                </label>
               </div>
 
               {/* Category */}
@@ -184,7 +244,6 @@ const AdminExamForm = () => {
 
                 <select
                   name="category"
-                  required
                   className="w-full border border-gray-300 rounded-lg py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500"
                   value={formData.category}
                   onChange={handleChange}

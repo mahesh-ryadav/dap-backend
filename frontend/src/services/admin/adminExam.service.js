@@ -30,6 +30,10 @@ export const patchQuestion = (questionId, questionData) => {
     return apiClient.patch(`${ADMIN_QUESTION_API}/${questionId}`, questionData);
 };
 
+export const deleteQuestion = (questionId) => {
+    return apiClient.delete(`${ADMIN_QUESTION_API}/${questionId}`);
+};
+
 // Option Management
 export const addOptionToQuestion = (questionId, optionData) => {
     return apiClient.post(`${ADMIN_QUESTION_API}/${questionId}/options`, optionData);
@@ -43,6 +47,10 @@ export const patchOption = (optionId, optionData) => {
     return apiClient.patch(`${ADMIN_OPTION_API}/${optionId}`, optionData);
 };
 
+export const deleteOption = (optionId) => {
+    return apiClient.delete(`${ADMIN_OPTION_API}/${optionId}`);
+};
+
 const adminExamService = {
     createExam,
     updateExam,
@@ -50,9 +58,11 @@ const adminExamService = {
     addQuestionToExam,
     updateQuestion,
     patchQuestion,
+    deleteQuestion,
     addOptionToQuestion,
     updateOption,
     patchOption,
+    deleteOption,
 };
 
 export default adminExamService;
